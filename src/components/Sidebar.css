@@ -1,0 +1,12 @@
+.sidebar {
+  height: 100%;
+}
+.add-chat {
+  border-radius: 5px;
+  height: 40px;
+  text-align: left;
+  color: white;
+  background: rgb(0, 0, 0);
+  font-weight: 500;
+  border: none;
+}
