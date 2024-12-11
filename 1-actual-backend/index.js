@@ -22,7 +22,7 @@ app.post("/upload", async (req, res) => {
     return res.status(400).json({ error: "Prompt is required" });
   }
 
-  const genAI = new GoogleGenerativeAI("APIKEY");
+  const genAI = new GoogleGenerativeAI("AK");
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
   try {
