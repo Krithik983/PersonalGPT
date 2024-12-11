@@ -1,24 +1,27 @@
-import React, { useState } from "react";
+import { React, useState } from "react";
 import "./Chatbox.css";
+import axios from "axios";
 
 const Chatbox = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (inputValue.trim()) {
       setMessages([...messages, { text: inputValue, sender: "user" }]);
       setInputValue("");
       // Simulating a response from the assistant
-      setTimeout(() => {
+      try {
+        const response = await axios.post("http://localhost:3000/upload", {
+          prompt: inputValue,
+        });
         setMessages((prev) => [
           ...prev,
-          {
-            text: "This is a response from the assistant!",
-            sender: "assistant",
-          },
+          { text: response.data.text(), sender: "assistant" },
         ]);
-      }, 1000);
+      } catch (error) {
+        console.error("Error fetching response:", error);
+      }
     }
   };
 
